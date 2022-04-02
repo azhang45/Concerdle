@@ -51,7 +51,7 @@ async def on_message(message):
                 SOLVED = True
                 NUM_GUESSES = 0
             elif(NUM_GUESSES == MAX_GUESSES):
-                await message.channel.send("You ran out of guesses. The correct word was "+correctWord+". I'm concerned for you.")
+                await message.channel.send("You ran out of guesses. The correct word was `"+correctWord[:-1]+"`. I'm concerned for you.")
                 SOLVED = True
                 NUM_GUESSES = 0
             return
