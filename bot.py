@@ -25,7 +25,7 @@ async def on_message(message):
             return
     
     if (message.author.id == 723910433966260336 or message.author.id == 732979801459261501) and ('print bot version' == message.content.lower() or 'pbv' == message.content.lower()):
-            await message.channel.send('3.0.0')
+            await message.channel.send('3.1.0')
 
     if message.content[0] == PREFIX:
         global SOLVED
@@ -35,13 +35,14 @@ async def on_message(message):
         if message.content[1:] == 'concerndle' and SOLVED:
             SOLVED = False
             correctWord = methods.chooseWord("wordle-answers-alphabetical.txt")
+            await message.channel.send("Word has been chosen. Add `$` before each guess, you have "+str(MAX_GUESSES)+" total guesses.")
             return
         elif(not methods.guessIsWord(message.content[1:])):
             await message.channel.send("Invalid guess.")
             return
         elif not SOLVED:
             NUM_GUESSES += 1
-            await message.channel.send(message.content[1:] + "\n" + methods.checkCorrect(message.content[1:], correctWord)+"\nYou have "+ str(MAX_GUESSES-NUM_GUESSES)+" left.")
+            await message.channel.send(message.content[1:] + "\n" + methods.checkCorrect(message.content[1:], correctWord)+"\nYou have "+ str(MAX_GUESSES-NUM_GUESSES)+" guesses left.")
             if(methods.checkWin(methods.checkCorrect(message.content[1:], correctWord))):
                 await message.channel.send("Congratulations, you got the correct word in "+str(NUM_GUESSES)+" guesses! Are you concerned yet?")
                 SOLVED = True
@@ -51,7 +52,7 @@ async def on_message(message):
                 SOLVED = True
                 NUM_GUESSES = 0
             elif("<:green_square:959677336750534686>" in methods.checkCorrect(message.content[1:], correctWord)):
-                await message.channel.send("No greens unless it's the correct word. We are concerned about your mental capacity <3.")
+                await message.channel.send("No greens unless it's the correct word. The correct word was `"+correctWord[:-1]+"`. We are concerned for your mental capacity <3.")
                 SOLVED = True
                 NUM_GUESSES = 0
             return
