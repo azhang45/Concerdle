@@ -14,7 +14,36 @@ def checkCorrect(guess, correct):
         if guess[i] not in correct:
             ans += white
         elif guess[i] in correct and correct[i] != guess[i]:
-            ans += yellow
+            if doubleLetter(i, guess[i], guess, correct):
+                ans += yellow
+            else :
+                ans += white
         else:
             ans += green
     return ans
+
+def geussIsWord(guess) :
+    file = open("wordle-guess.txt")
+
+    for line in file :
+        if guess == line :
+            return True
+
+    return False
+
+def doubleLetter(index, letter, guess, correct):
+    guessCount = 0
+    correctCount = 0
+
+    for i in range(5):
+        if guess[i] == letter:
+            guessCount += 1
+    for i in range(index + 1):
+        if correct[i] == letter:
+            correctCount += 1
+
+    if correctCount <= guessCount :
+        return True
+        
+    return False
+
