@@ -52,3 +52,6 @@ def doubleLetter(index, letter, guess, correct):
 
     return False
 
+def checkWin(squares):
+    green = "<:green_square:959677336750534686>"
+    return squares == green*5
