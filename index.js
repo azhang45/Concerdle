@@ -16,13 +16,19 @@ client.on('ready', () => {
 })
 
 client.on('messageCreate', (message) => {
-    if(message.content === '$concerndle'){
+    if (message.content === '$concerndle') {
         //will create this function later
         message.reply({
             content: 'wassup',
         })
         //message.startGame();
         //once start game is called will do message.content.substring(0, 7) === '$guess'
+    }
+    if (message.content === '$wordList') {
+        const { MessageAttachment } = require("discord.js");
+        const file = new MessageAttachment("wordle-answers-alphabetical.txt");
+        
+        message.channel.send(file);
     }
 })
 
