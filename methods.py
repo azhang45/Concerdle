@@ -22,7 +22,7 @@ def checkCorrect(guess, correct):
             ans += green
     return ans
 
-def geussIsWord(guess) :
+def guessIsWord(guess) :
     file = open("wordle-guess.txt")
 
     for line in file :
@@ -34,7 +34,8 @@ def geussIsWord(guess) :
 def doubleLetter(index, letter, guess, correct):
     guessCount = 0
     correctCount = 0
-
+    greenCount = 0
+    
     for i in range(5):
         if correct[i] == letter:
             correctCount += 1
@@ -42,7 +43,11 @@ def doubleLetter(index, letter, guess, correct):
         if guess[i] == letter:
             guessCount += 1
 
-    if guessCount <= correctCount :
+    for i in range(5):
+        if correct[i] == guess[i] and guess[i] == letter:
+            greenCount += 1
+
+    if guessCount <= (correctCount - greenCount):
         return True
 
     return False
