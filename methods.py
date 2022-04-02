@@ -38,12 +38,12 @@ def doubleLetter(index, letter, guess, correct):
     for i in range(5):
         if guess[i] == letter:
             guessCount += 1
-    for i in range(index + 1):
+    for i in range(index):
         if correct[i] == letter:
             correctCount += 1
 
     if correctCount <= guessCount :
         return True
-        
+
     return False
 
