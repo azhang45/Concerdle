@@ -22,6 +22,7 @@ client.on('messageCreate', (message) => {
             content: 'wassup',
         })
         //message.startGame();
+        //once start game is called will do message.content.substring(0, 7) === '$guess'
     }
 })
 
