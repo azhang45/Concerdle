@@ -25,24 +25,26 @@ async def on_message(message):
             return
     
     if (message.author.id == 723910433966260336 or message.author.id == 732979801459261501) and ('print bot version' == message.content.lower() or 'pbv' == message.content.lower()):
-            await message.channel.send('3.1.0')
+            await message.channel.send('3.2.2')
 
     if message.content[0] == PREFIX:
         global SOLVED
         global correctWord
         global NUM_GUESSES
         global MAX_GUESSES
-        if message.content[1:] == 'concerndle' and SOLVED:
+        if message.content[1:].lower() == 'concerndle' and SOLVED:
             SOLVED = False
             correctWord = methods.chooseWord("wordle-answers-alphabetical.txt")
             await message.channel.send("Word has been chosen. Add `$` before each guess, you have "+str(MAX_GUESSES)+" total guesses.")
+            return
+        elif(message.content[1:].lower() != 'concerndle' and SOLVED):
             return
         elif(not methods.guessIsWord(message.content[1:])):
             await message.channel.send("Invalid guess.")
             return
         elif not SOLVED:
             NUM_GUESSES += 1
-            await message.channel.send(message.content[1:] + "\n" + methods.checkCorrect(message.content[1:], correctWord)+"\nYou have "+ str(MAX_GUESSES-NUM_GUESSES)+" guesses left.")
+            await message.channel.send(message.content[1:].lower() + "\n" + methods.checkCorrect(message.content[1:], correctWord)+"\nYou have "+ str(MAX_GUESSES-NUM_GUESSES)+" guesses left.")
             if(methods.checkWin(methods.checkCorrect(message.content[1:], correctWord))):
                 await message.channel.send("Congratulations, you got the correct word in "+str(NUM_GUESSES)+" guesses! Are you concerned yet?")
                 SOLVED = True

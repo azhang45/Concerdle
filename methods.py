@@ -9,7 +9,7 @@ def checkCorrect(guess, correct):
     yellow = "<:yellow_square:959677336750534686>"
     green = "<:green_square:959677336750534686>"
     ans = ""
-
+    guess = guess.lower()
     for i in range(5):
         if guess[i] not in correct:
             ans += white
@@ -35,6 +35,7 @@ def doubleLetter(index, letter, guess, correct):
     guessCount = 0
     correctCount = 0
     greenCount = 0
+    guess = guess.lower()
     
     for i in range(5):
         if correct[i] == letter:
