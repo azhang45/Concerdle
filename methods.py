@@ -18,3 +18,6 @@ def checkCorrect(guess, correct):
         else:
             ans += green
     return ans
+
+def geussIsWord(guess) :
+    
