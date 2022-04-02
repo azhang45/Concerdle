@@ -14,7 +14,7 @@ def checkCorrect(guess, correct):
         if guess[i] not in correct:
             ans += white
         elif guess[i] in correct and correct[i] != guess[i]:
-            if doubleLetter(i, guess[i], guess, correct):
+            if doubleLetter(i, guess[i], guess, correct) == True:
                 ans += yellow
             else :
                 ans += white
@@ -36,13 +36,13 @@ def doubleLetter(index, letter, guess, correct):
     correctCount = 0
 
     for i in range(5):
-        if guess[i] == letter:
-            guessCount += 1
-    for i in range(index):
         if correct[i] == letter:
             correctCount += 1
+    for i in range(index + 1):
+        if guess[i] == letter:
+            guessCount += 1
 
-    if correctCount <= guessCount :
+    if guessCount <= correctCount :
         return True
 
     return False
