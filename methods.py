@@ -26,7 +26,7 @@ def guessIsWord(guess) :
     file = open("wordle-guess.txt")
 
     for line in file :
-        if guess == line :
+        if guess.upper() == line.strip() :
             return True
 
     return False

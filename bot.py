@@ -31,7 +31,7 @@ async def on_message(message):
             return
     
     if (message.author.id == 723910433966260336 or message.author.id == 732979801459261501) and ('print bot version' == message.content.lower() or 'pbv' == message.content.lower()):
-            await message.channel.send('1.0.0')
+            await message.channel.send('2.0.0')
 
     if message.content[0] == PREFIX:
         global SOLVED
