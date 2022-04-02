@@ -43,11 +43,14 @@ async def on_message(message):
             correctWord = methods.chooseWord("wordle-answers-alphabetical.txt")
             await message.channel.send(correctWord)
             return
+        elif(not methods.guessIsWord(message.content[1:])):
+            await message.channel.send("Invalid guess.")
+            return
         elif len(message.content) == 6 and not SOLVED:
             NUM_GUESSES += 1
             await message.channel.send(message.content[1:] + "\n" + methods.checkCorrect(message.content[1:], correctWord)+"\nYou have "+ str(MAX_GUESSES-NUM_GUESSES)+" left.")
             if(checkWin(methods.checkCorrect(message.content[1:], correctWord))):
-                await message.channel.send("Congratulations, you got the correct word in "+str(NUM_GUESSES)+"! Are you concerned yet?")
+                await message.channel.send("Congratulations, you got the correct word in "+str(NUM_GUESSES)+" guesses! Are you concerned yet?")
                 SOLVED = True
                 NUM_GUESSES = 0
             elif(NUM_GUESSES == MAX_GUESSES):
