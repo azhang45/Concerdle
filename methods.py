@@ -20,4 +20,10 @@ def checkCorrect(guess, correct):
     return ans
 
 def geussIsWord(guess) :
-    
+    file = open("wordle-guess.txt")
+
+    for line in file :
+        if guess == line :
+            return True
+
+    return False
