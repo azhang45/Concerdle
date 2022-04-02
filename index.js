@@ -7,12 +7,12 @@ dotenv.config()
 const client = new DiscordJS.Client({
     intents: [
         Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES
+        Intents.FLAGS.GUILD_MESSAGES3
     ]
 })
 
 client.on('ready', () => {
-    console.log('The bot is ready')
+    console.log(`${client.user.tag} has logged in`);
 })
 
 client.on('messageCreate', (message) => {
